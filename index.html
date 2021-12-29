@@ -1,0 +1,141 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="js/leaflet.css" />
+    <script src="js/leaflet.js"></script>
+    <script src="srcserch/leaflet-search.js"></script>
+    <link rel="stylesheet" href="fullscreen/Control.FullScreen.css" />
+    <link rel="stylesheet" href="srcserch/leaflet-search.css" />
+    <script src="fullscreen/Control.FullScreen.js"></script>
+
+    <script>
+
+        lat_k="-58.96875";
+        lng_k="86.859375";
+        zm_k="6";
+        console.log(lat_k+" "+lng_k+" "+zm_k);
+    </script>
+
+
+</head>
+<body>
+<!--- <div> <input type="text" id="inputText">
+<input type="button" id="copyText"></div>--->
+<div id="map" style="width: 100%; height: 100%;"></div>
+<script src="jquery-1.8.3.js"></script>
+<script>
+
+    var map2015 =  L.tileLayer('./tiles2015/{z}/{x}/{y}.png', {
+        attribution: 'План Ташкента 2015г. &copy;',
+        continuousWorld: true,
+        noWrap: true
+    });
+    var map1991 =  L.tileLayer('./tiles1991/{z}/{x}/{y}.png', {
+        attribution: 'План Ташкента 2015г. &copy;',
+        continuousWorld: true,
+        noWrap: true
+    });
+    var map1978 =  L.tileLayer('./tiles1978/{z}/{x}/{y}.png', {
+        attribution: 'План Ташкента 2015г. &copy;',
+        continuousWorld: true,
+        noWrap: true
+    });
+    map1936  =  L.tileLayer('./tiles1936/{z}/{x}/{y}.png', {
+        attribution: 'План Ташкента 1936г. &copy;',
+        continuousWorld: true,
+        noWrap: true
+    });
+    map1922  =  L.tileLayer('./tiles1922/{z}/{x}/{y}.png', {
+        attribution: 'План Ташкента 1922г. &copy;',
+        continuousWorld: true,
+        noWrap: true
+    });
+    map1890  =  L.tileLayer('./tiles1890/{z}/{x}/{y}.png', {
+        attribution: 'План Ташкента 1890г.&copy;',
+        continuousWorld: true,
+        noWrap: true
+    });
+    map1872  =  L.tileLayer('./tiles1872/{z}/{x}/{y}.png', {
+        attribution: 'План Ташкента 1872г.&copy;',
+        continuousWorld: true,
+        noWrap: true
+    });
+    map1870  =  L.tileLayer('./tiles1870/{z}/{x}/{y}.png', {
+        attribution: 'План Ташкента 1872г.&copy;',
+        continuousWorld: true,
+        noWrap: true
+    });
+
+
+    map = L.map('map', {
+        crs: L.CRS.Simple,
+        maxZoom: 6,
+        minZoom: 2,
+        layers: map2015,
+        fullscreenControl: true,
+        fullscreenControlOptions: {
+            position: 'topleft'
+        }
+    }).setView([lat_k,lng_k], zm_k);
+
+
+
+    var baseMaps = {
+       "План 2015 года": map2015,
+        "План 1991 года": map1991,
+        "План 1978 года": map1978,
+        "План 1936 года": map1936,
+        "План 1922 года": map1922,
+        "План 1890 года": map1890,
+        "План 1872 года": map1872,
+        "План 1870 года": map1870,
+   };
+
+
+    L.control.layers( baseMaps).addTo(map);
+</script>
+
+
+<script>
+    var popup = L.marker();
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+           // .setIcon(new LeafIcon({iconUrl: 'icon/sqver_1.png'}))
+            .addTo(map);
+
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+        var zm = map.getZoom();
+        var url = "<?=$url?>?lat="+lat+"&lng="+lng+"&zm="+zm
+        // document.getElementById("inputText").value = url;
+        // popup.bindPopup(url);
+
+
+
+    }
+
+    map.on('click', onMapClick);
+</script>
+
+</body>
+<script>
+    /* сохраняем текстовое поле в переменную text */
+    var text = document.getElementById("inputText");
+    /* сохраняем кнопку в переменную btn */
+    var btn = document.getElementById("copyText");
+    /* вызываем функцию при нажатии на кнопку */
+    // btn.onclick = function() {
+    //    text.select();
+     //   document.execCommand("copy");
+    // }
+</script>
+</html>
+
+
+
+
+
+
+
+
