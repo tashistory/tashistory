@@ -1,7 +1,15 @@
-<html>
+﻿<html>
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="js/leaflet.css" />
+    
+    <meta property="og:title" content="Интерактивная карта Ташкента"/>
+    <meta property="og:image" content="https://tashistory.github.io/tashistory/image/logo.png"/>
+	<meta property="og:image:width" content="900"/>
+	<meta property="og:image:height" content="586"/>
+	<meta property="og:url" content="https://tashistory.github.io/tashistory/"/>
+	<meta property="og:site_name" content="TasHistory"/>
+
+<link rel="stylesheet" href="js/leaflet.css" />
     <script src="js/leaflet.js"></script>
     <script src="srcserch/leaflet-search.js"></script>
     <link rel="stylesheet" href="fullscreen/Control.FullScreen.css" />
@@ -28,49 +36,65 @@
     var map2015 =  L.tileLayer('./tiles2015/{z}/{x}/{y}.png', {
         attribution: 'План Ташкента 2015г. &copy;',
         continuousWorld: true,
-        noWrap: true
-    });
+          noWrap: true,
+        maxNativeZoom: 6,
+            });
     var map1991 =  L.tileLayer('./tiles1991/{z}/{x}/{y}.png', {
         attribution: 'План Ташкента 2015г. &copy;',
         continuousWorld: true,
-        noWrap: true
+        noWrap: true,
+        maxNativeZoom: 6,
     });
     var map1978 =  L.tileLayer('./tiles1978/{z}/{x}/{y}.png', {
         attribution: 'План Ташкента 2015г. &copy;',
         continuousWorld: true,
-        noWrap: true
+        noWrap: true,
+        maxNativeZoom: 6,
+    });
+	var map1966 =  L.tileLayer('./tiles1966/{z}/{x}/{y}.png', {
+        attribution: 'План Ташкента 2066г. &copy;',
+        continuousWorld: true,
+        noWrap: true,
+        maxNativeZoom: 6,
     });
     map1936  =  L.tileLayer('./tiles1936/{z}/{x}/{y}.png', {
         attribution: 'План Ташкента 1936г. &copy;',
         continuousWorld: true,
-        noWrap: true
+        noWrap: true,
+        maxNativeZoom: 6,
     });
     map1922  =  L.tileLayer('./tiles1922/{z}/{x}/{y}.png', {
         attribution: 'План Ташкента 1922г. &copy;',
         continuousWorld: true,
-        noWrap: true
+        noWrap: true,
+        maxNativeZoom: 6,
     });
     map1890  =  L.tileLayer('./tiles1890/{z}/{x}/{y}.png', {
         attribution: 'План Ташкента 1890г.&copy;',
         continuousWorld: true,
-        noWrap: true
+        noWrap: true,
+        maxNativeZoom: 6,
     });
     map1872  =  L.tileLayer('./tiles1872/{z}/{x}/{y}.png', {
         attribution: 'План Ташкента 1872г.&copy;',
         continuousWorld: true,
-        noWrap: true
+        noWrap: true,
+        maxNativeZoom: 6,
     });
     map1870  =  L.tileLayer('./tiles1870/{z}/{x}/{y}.png', {
         attribution: 'План Ташкента 1872г.&copy;',
         continuousWorld: true,
-        noWrap: true
+        noWrap: true,
+        maxNativeZoom: 6,
     });
 
 
     map = L.map('map', {
         crs: L.CRS.Simple,
-        maxZoom: 6,
+
+        maxZoom: 8,
         minZoom: 2,
+
         layers: map2015,
         fullscreenControl: true,
         fullscreenControlOptions: {
@@ -84,6 +108,7 @@
        "План 2015 года": map2015,
         "План 1991 года": map1991,
         "План 1978 года": map1978,
+		"Спутниковый снимок 1966 года": map1966,
         "План 1936 года": map1936,
         "План 1922 года": map1922,
         "План 1890 года": map1890,
